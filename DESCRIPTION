@@ -9,7 +9,7 @@ Authors@R:
            family = "Edlinger",
            role = "aut"),
     person(given = "Alice",
-           family = "Groebner",
+           family = "Gröbner",
            role = "aut"),
     person(given = "Parham",
            family = "Meraji",
@@ -21,12 +21,10 @@ Authors@R:
            family = "Vorhauer",
            role = "aut"),
     person(given = "Bettina",
-           family = "Gruen",
+           family = "Grün",
            role = c("cre", "ctb"),
            email = "bettina.gruen@jku.at"))
-gruenAuthor: Kiran Jeniffer Bal [aut], Gregor Edlinger [aut], Alice Groebner [aut], Praham Meraji [aut], Michael Schleifer [aut], Dominik Vorhauer [aut], Bettina Gruen [ctb, cre]
 Version: 0.1.0
-Maintainer: JKU Students <gabriele.mack-niederleitner@jku.at>
 Description: EM_Gamma is used to perform an EM-Algorithm for binned data, using Gamma Mixture Models. It computes an ECOFF value as well as an AIC-value and BIC-value for model comparison.
 License: GPL-2
 URL: http://www.eucast.org/
@@ -34,8 +32,6 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     invgamma,
-    rvest,
-    stringr
 RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
