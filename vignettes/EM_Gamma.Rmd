@@ -20,7 +20,9 @@ EM_Gamma is used to perform an EM-Algorithm for binned data, using Gamma Mixture
 
 ## Usage:
 
+```{r function synopsis, eval=FALSE}
 EM_Gamma(ZoneData, Anti, Bac, k, a = 2, b = 1, epsilon = 0.00001, quant = 0.01)
+```
 
 ## Arguments:
 **ZoneData:** data frame of the Zonediameter Data from web scraping.
@@ -94,21 +96,18 @@ a list with the components:
 
 ## Examples:
 
-```{r Package, eval=FALSE, echo=FALSE}
-library(devtools)
-setwd("D:/UNI/Master/Projects/Package")
-install("EMZoneDiameterGamma")
-require(EMZoneDiameterGamma)
+```{r Package}
+library("TeamGamma")
 ```
 
 ### Load the ZoneData:
 
-```{r load, eval=FALSE}
+```{r load}
 data("ZoneData") #loading the Zone Diameter-Data from a CSV-file
 ```
 
 ### Example 1:
-```{r ex1, eval=FALSE}
+```{r ex1}
 # plotting the frequencies of the Zone Diameters for visual checking
 ZDs <- subset(ZoneData, Antimicrobial == "Ampicillin" & Bacterium == "Escherichia coli", #selecting the cells with Zone Diameters of a specific combination of Antimicrobial and Bacterium
               grepl("^Z", colnames(ZoneData)))
@@ -145,7 +144,7 @@ lines(seq(0, 50, length = 1000),
 ```
 
 ### Example 2:
-```{r ex2, eval=FALSE}
+```{r ex2}
 # plotting the frequencies of the Zone Diameters for visual checking
 ZDs <- subset(ZoneData, Antimicrobial == "Piperacillin" & Bacterium == "Escherichia coli", #selecting the cells with Zone Diameters of a specific combination of Antimicrobial and Bacterium
               grepl("^Z", colnames(ZoneData)))
@@ -183,7 +182,7 @@ lines(seq(0, 50, length = 1000),
 ```
 
 ### Example 3:
-```{r ex3, eval=FALSE}
+```{r ex3}
 # plotting the frequencies of the Zone Diameters for visual checking
 ZDs <- subset(ZoneData, Antimicrobial == "Mecillinam" & Bacterium == "Escherichia coli", #selecting the cells with Zone Diameters of a specific combination of Antimicrobial and Bacterium
               grepl("^Z", colnames(ZoneData)))

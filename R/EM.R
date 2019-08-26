@@ -1,8 +1,4 @@
 #' @importFrom invgamma dinvgamma
-#' @export
-
-invgamma::dinvgamma
-
 #' @importFrom stats optim pgamma qgamma
 #Pj
 Pj <- function(dia, p, alpha, beta){
