@@ -8,21 +8,21 @@ EM_Gamma(ZoneData, Anti, Bac, k, a = 2, b = 1, epsilon = 1e-05,
   quant = 0.01)
 }
 \arguments{
-\item{ZoneData}{data frame of the zonediameter Data from web scraping.}
+\item{ZoneData}{data frame of the zone diameter data from web scraping.}
 
 \item{Anti}{the chosen Antimicrobial for the analysis.}
 
 \item{Bac}{the chosen Bacterium for the analysis.}
 
-\item{k}{the chosen number of cluster.}
+\item{k}{the chosen number of clusters.}
 
-\item{a}{the scale parameter of the inverse gamma distribution used for the penalty. Default to 2.}
+\item{a}{the scale parameter of the inverse gamma distribution used for the penalty. Default is 2.}
 
-\item{b}{the rate parameter of the inverse gamma distribution used for the penalty. Default to 1.}
+\item{b}{the rate parameter of the inverse gamma distribution used for the penalty. Default is 1.}
 
-\item{epsilon}{the stopping criteria for the algorithm. Default to 0.00001.}
+\item{epsilon}{the stopping criterion for the algorithm. Default is 0.00001.}
 
-\item{quant}{the quantile used for the ECOFF. Default to 0.01.}
+\item{quant}{the quantile used for the ECOFF. Default is 0.01.}
 }
 \value{
 A list with the components:
@@ -31,8 +31,8 @@ A list with the components:
  \item{Pi (the estimated mixture weights)}
  \item{Alpha (the estimated scale parameters for the gamma distribution)}
  \item{Beta (the estimated rate parameters for the gamma distribution)}
- \item{AIC (the akaike information criterion)}
- \item{BIC (the bayesian information criterion)}
+ \item{AIC (the Akaike information criterion)}
+ \item{BIC (the Bayesian information criterion)}
  \item{Ecoff (the value for the Ecoff)}
 }
 }
@@ -40,16 +40,16 @@ A list with the components:
 EM_Gamma is used to perform an EM-Algorithm for binned data, using Gamma Mixture Models. It computes an ECOFF value as well as an AIC-value and BIC-value for model comparison.
 }
 \details{
-At first clustering with quantiles method is used. The data is split into clusters with equal amount of data values. Afterwards the parameters pi, alpha and beta are initialized using moment estimation.
-The EM-Algorithm consists of an E-Step and a M-Step. The algorithm is an iterative process that updates the parameters and increases the log-likelihood at each iteration, until a stopping criteria epsilon is reached.
-In the E-Step the initialized values are used to compute p_j^(i)
+For initialization clustering with the quantiles method is used. The data is split into clusters with equal amount of data values. Afterwards the parameters pi, alpha and beta are initialized using moment estimation.
+The EM-Algorithm consists of an E-Step and a M-Step. The algorithm is an iterative process that updates the parameters and increases the log-likelihood at each iteration, until a stopping criterion epsilon is reached.
+In the E-Step the current parameter values are used to compute p_j^(i)
            p_j^(i)= sum_(k=1)^K pi_k^(i) * integral_(a_j)^(b_j) f_k(x|vartheta_k^(i))dx
 and p_jk^(i)
            p_jk^(i) = [pi_k^(i) * integral_(a_j)^(b_j) f_k(x|vartheta_k^(i))dx] / p_j^(i),
-with f_k(x) as the density of k-th gamma mixture component.
-In each M-Step the expectation of the complete log-likelihood at the i-th step has to be maximized. The maximization with respect to pi yields to
+with f_k(x) the density of the k-th gamma mixture component.
+In each M-Step the expectation of the complete log-likelihood at the i-th step has to be maximized. The maximization with respect to pi yields 
            pi_k^(i+1)= [sum_(j=1)^J n_j*p_jk^(i)] / [tilde(N)]
-Using optim as the general purpose optimizer, the estimators of alpha and beta are maximized.
+Using optim as the general purpose optimizer, the estimators of alpha and beta are obtained.
 This algorithm is repeated until
            |l^(i+1)-l^(i)| < epsilon,
 with l^(i) being the complete data log-likelihood at the i-th step.
