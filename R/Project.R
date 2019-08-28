@@ -229,7 +229,7 @@ EM_Gamma <- function(ZoneData, Anti, Bac, k, a = 2, b = 1, epsilon = 0.00001, qu
     newEst <- list(Pi = newP, Alpha = newAlpha, Beta = newBeta)
 
 
-    e <- abs(l(newEst$Pi, newEst$Alpha, newEst$Beta, a, b, Data, pjk, dia)-l(est$Pi, est$Alpha, est$Beta, a, b, Data, pjk, dia))
+    e <- abs(l(newEst$Pi, newEst$Alpha, newEst$Beta, a, b, Data, dia)-l(est$Pi, est$Alpha, est$Beta, a, b, Data, dia))
 
     est <- newEst
   }

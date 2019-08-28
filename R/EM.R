@@ -45,11 +45,11 @@ newPi <- function(ob, n, pjk){
 #for optim
 Q <- function(par, a, b, dia, Data, pjk, k){
   q <- sum(Data*pjk[k,]*log(G(par, dia)))
-  ig <- dinvgamma(par[1]/(par[2]^2), shape = a, rate = b)
-  if (ig == 0) {
-    ig <- .Machine$double.xmin
+  ig <- dinvgamma(par[1]/(par[2]^2), shape = a, rate = b, log = TRUE)
+  if (ig == -Inf) {
+    ig <- log(.Machine$double.xmin)
   }
-  q <- sum(q) + log(ig)
+  q <- sum(q) + ig
 }
 
 #LH
@@ -69,7 +69,14 @@ GLo <- function(alpha, beta, dia){
 }
 
 #L
-l <- function(p, alpha, beta, a, b, Data, pjk, dia){
-  sum(colSums(Data*pjk*log(p))) + sum(colSums(Data*pjk*log(GLo(alpha, beta, dia)))) + sum(dinvgamma(alpha/(beta^2), shape = a, rate = b))
+l <- function(p, alpha, beta, a, b, Data, dia){
+  f <- vector("numeric", length = length(dia))
+  ig <- 0
+  for (g in 1:length(p)) {
+    f <- f + p[g]*((pgamma(dia+0.5, shape = alpha[g], rate = beta[g]) - pgamma(dia-0.5, shape = alpha[g], rate = beta[g])))
+    ig <- ig + dinvgamma(alpha[g]/(beta[g]^2), shape = a, rate = b, log = TRUE)
+  }
+  f[f == 0] <- .Machine$double.xmin
+  sum(Data*log(f)) + ig
 }
 
