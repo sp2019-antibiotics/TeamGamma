@@ -44,13 +44,13 @@ globalVariables(c("Data", "Antimicrobial", "Bacterium"))
 #' @export
 #'
 #' @examples
-#' data("ZoneData") #loading the Zone Diameter-Data from a CSV-file
+#' data("ZD", package = "EUCASTData") #loading the Zone Diameter-Data from a CSV-file
 #'
 #' # example 1
 #' # plotting the frequencies of the Zone Diameters for visual checking
 #' # selecting the cells with Zone Diameters of a specific combination of Antimicrobial and Bacterium
-#' ZDs <- subset(ZoneData, Antimicrobial == "Ampicillin" & Bacterium == "Escherichia coli",
-#'               grepl("^Z", colnames(ZoneData)))
+#' ZDs <- subset(ZD, Antimicrobial == "Ampicillin" & Bacterium == "Escherichia coli",
+#'               grepl("^Z", colnames(ZD)))
 #'
 #' example <- data.frame(ZD = as.integer(gsub("^Z", "", colnames(ZDs))), # creating a dataframe
 #'                       Freq = unname(unlist(ZDs)))
@@ -61,7 +61,7 @@ globalVariables(c("Data", "Antimicrobial", "Bacterium"))
 #'
 #' # calling the EM_Gamma-function with a specific combination of
 #' # Antimicrobial, Bacterium, k and epsilon as default
-#' est <- EM_Gamma(ZoneData = ZoneData, Anti = "Ampicillin", Bac = "Escherichia coli",
+#' est <- EM_Gamma(ZoneData = ZD, Anti = "Ampicillin", Bac = "Escherichia coli",
 #'                 k = 1, epsilon = 0.001)
 #' est # showing the parameters of the distribution, AIC, BIC and Ecoff
 #'
@@ -91,8 +91,8 @@ globalVariables(c("Data", "Antimicrobial", "Bacterium"))
 #' # example 2
 #' # plotting the frequencies of the Zone Diameters for visual checking
 #' # selecting the cells with Zone Diameters of a specific combination of Antimicrobial and Bacterium
-#' ZDs <- subset(ZoneData, Antimicrobial == "Piperacillin" & Bacterium == "Escherichia coli",
-#'               grepl("^Z", colnames(ZoneData)))
+#' ZDs <- subset(ZD, Antimicrobial == "Piperacillin" & Bacterium == "Escherichia coli",
+#'               grepl("^Z", colnames(ZD)))
 #'
 #' example <- data.frame(ZD = as.integer(gsub("^Z", "", colnames(ZDs))), # creating a dataframe
 #'                       Freq = unname(unlist(ZDs)))
@@ -102,7 +102,7 @@ globalVariables(c("Data", "Antimicrobial", "Bacterium"))
 #' # as the visual checking of the plot suggests a distribution with 2 components k will be chosen as 2
 #' # calling the EM_Gamma-function with a specific combination of
 #' # Antimicrobial, Bacterium, k and epsilon as default
-#' est <- EM_Gamma(ZoneData = ZoneData, Anti = "Piperacillin", Bac = "Escherichia coli",
+#' est <- EM_Gamma(ZoneData = ZD, Anti = "Piperacillin", Bac = "Escherichia coli",
 #'                 k = 2, epsilon = 0.001)
 #' est #showing the parameters of the distributions, AIC, BIC and Ecoff
 #'
@@ -133,8 +133,8 @@ globalVariables(c("Data", "Antimicrobial", "Bacterium"))
 #' # example 3
 #' # plotting the frequencies of the Zone Diameters for visual checking
 #' # selecting the cells with Zone Diameters of a specific combination of Antimicrobial and Bacterium
-#' ZDs <- subset(ZoneData, Antimicrobial == "Mecillinam" & Bacterium == "Escherichia coli",
-#'               grepl("^Z", colnames(ZoneData)))
+#' ZDs <- subset(ZD, Antimicrobial == "Mecillinam" & Bacterium == "Escherichia coli",
+#'               grepl("^Z", colnames(ZD)))
 #'
 #' example <- data.frame(ZD = as.integer(gsub("^Z", "", colnames(ZDs))), # creating a dataframe
 #'                       Freq = unname(unlist(ZDs)))
@@ -144,13 +144,13 @@ globalVariables(c("Data", "Antimicrobial", "Bacterium"))
 #' # after the visual checking of the plot it cannot be decided clearly how many components there are,
 #' # so several k will be tried out
 #' # 1 component
-#' est1 <- EM_Gamma(ZoneData = ZoneData, Anti = "Mecillinam", Bac = "Escherichia coli",
+#' est1 <- EM_Gamma(ZoneData = ZD, Anti = "Mecillinam", Bac = "Escherichia coli",
 #'                  k = 1, epsilon = 0.001)
 #' # 2 components
-#' est2 <- EM_Gamma(ZoneData = ZoneData, Anti = "Mecillinam", Bac = "Escherichia coli",
+#' est2 <- EM_Gamma(ZoneData = ZD, Anti = "Mecillinam", Bac = "Escherichia coli",
 #'                  k = 2, epsilon = 0.001)
 #' # 3 components
-#' est3 <- EM_Gamma(ZoneData = ZoneData, Anti = "Mecillinam", Bac = "Escherichia coli",
+#' est3 <- EM_Gamma(ZoneData = ZD, Anti = "Mecillinam", Bac = "Escherichia coli",
 #'                  k = 3, epsilon = 0.001)
 #'
 #' # comparing the BIC and the AIC to figure out the best solution

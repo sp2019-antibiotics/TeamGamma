@@ -33,5 +33,5 @@ LazyData: true
 Imports: 
     invgamma,
 RoxygenNote: 6.1.1
-Suggests: knitr, rmarkdown
+Suggests: EUCASTData, knitr, rmarkdown
 VignetteBuilder: knitr
